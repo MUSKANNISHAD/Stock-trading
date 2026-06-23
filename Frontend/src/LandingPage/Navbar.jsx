@@ -1,10 +1,9 @@
 import React from 'react'
 
-export default function Footer() {
+export default function Navbar() {
   return (
     <div>
-      
-      <h1>Footer</h1>
+      <h1>Navbar</h1>
     </div>
   )
 }
