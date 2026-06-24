@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function signup() {
+export default function SupportPage() {
   return (
     <div>
-      
+        
     </div>
   )
 }

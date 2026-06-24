@@ -13,14 +13,12 @@ export default function homePage() {
     return (
         <div>
             <>
-                <Navbar />
                 <Hero />
                 <Awards />
                 <Stats />
                 <Pricing />
                 <Education />
                 <OpenAccount />
-                <Footer />
 
 
 
