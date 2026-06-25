@@ -2,11 +2,11 @@ import React from 'react'
 
 export default function Footer() {
   return (
-    <div>
       <div className="container border-top mb-5 mt-5">
         <div className="row">
           <div className="col">
-            <img src="/media/logo.svg" alt="logo" style={{ width: "50%" }} />
+            <img src="/media/logo.svg" alt="logo" style={{ width: "50%" }} /> <br></br>
+             <br></br>
             <p> &copy; 2010-2024, not zerodha broking Ltd. <br></br>All rights reserves.</p>
           </div>
           <div className="col">
@@ -83,6 +83,5 @@ export default function Footer() {
           </p>
         </div>
       </div>
-    </div>
   )
 }
