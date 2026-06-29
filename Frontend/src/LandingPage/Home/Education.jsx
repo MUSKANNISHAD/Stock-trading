@@ -14,8 +14,6 @@ export default function Education() {
             <a style={{ textDecoration: "none" }} href="#">Versity </a> <i className="fa-solid fa-arrow-right mb-5" style={{ color: "blue" }}></i>
             <p className='mb-3'>TradingQ&A,the most active trading and investment communityin india for all your market realted queries.</p>
             <a style={{ textDecoration: "none" }} href="#">TradigQ&A </a> <i className="fa-solid fa-arrow-right" style={{ color: "blue" }}></i>
-
-
           </div>
 
         </div>
