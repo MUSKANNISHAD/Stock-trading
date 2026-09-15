@@ -5,7 +5,10 @@ import dotenv from "dotenv";
 import mongoose from "mongoose";
 import { holdingsModels } from "./model/HoldingsModel.js";
 import { PositionModel } from "./model/PositionsModel.js";
-
+import { OrderModel } from "./model/OrderModel.js";
+import bodyParser from "body-parser";
+import cors from "cors";
+import userRoutes from "./routes/userRoute.js";
 dotenv.config();
 const PORT = process.env.PORT || 3000;
 const mongodb = process.env.MONGO_URL;
@@ -16,6 +19,9 @@ app.get("/", async (req, res) => {
     res.send("hello world");
 })
 
+app.use(cors());
+app.use(bodyParser.json());
+app.use(userRoutes);
 // app.get("/addTodatabase", async (req, res) => {
 //     let tempHoldings = [
 //         {
@@ -143,47 +149,69 @@ app.get("/", async (req, res) => {
 //     res.send("data has initialized");
 // })
 
-app.get("/addPositions", async (req, res) => {
-    let tempPositions = [
+// app.get("/addPositions", async (req, res) => {
+//     let tempPositions = [
 
-        {
-            product: "CNC",
-            name: "EVEREADY",
-            qty: 2,
-            avg: 316.27,
-            price: 312.35,
-            net: "+0.58%",
-            day: "-1.24%",
-            isLoss: true,
-        },
-        {
-            product: "CNC",
-            name: "JUBLFOOD",
-            qty: 1,
-            avg: 3124.75,
-            price: 3082.65,
-            net: "+10.04%",
-            day: "-1.35%",
-            isLoss: true,
-        },
+//         {
+//             product: "CNC",
+//             name: "EVEREADY",
+//             qty: 2,
+//             avg: 316.27,
+//             price: 312.35,
+//             net: "+0.58%",
+//             day: "-1.24%",
+//             isLoss: true,
+//         },
+//         {
+//             product: "CNC",
+//             name: "JUBLFOOD",
+//             qty: 1,
+//             avg: 3124.75,
+//             price: 3082.65,
+//             net: "+10.04%",
+//             day: "-1.35%",
+//             isLoss: true,
+//         },
 
-    ]
-    tempPositions.forEach((item) => {
-        let newPositions = new PositionModel({
-            name: item.name,
-            qty: item.ty,
-            avg: item.avg,
-            price: item.price,
-            net: item.net,
-            day: item.day
-        })
-        newPositions.save();
-    })
-    res.send("data of Positions has initialized");
+//     ]
+//     tempPositions.forEach((item) => {
+//         let newPositions = new PositionModel({
+//             name: item.name,
+//             qty: item.qty,
+//             avg: item.avg,
+//             price: item.price,
+//             net: item.net,
+//             day: item.day
+//         })
+//         newPositions.save();
+//     })
+//     res.send("data of Positions has initialized");
 
+// })
+
+app.get("/allHoldings", async (req, res) => {
+    let allholdings = await holdingsModels.find({});
+    res.json(allholdings);
 })
+
+app.get("/allPositions", async (req, res) => {
+    let allpositions = await PositionModel.find({});
+    res.json(allpositions);
+})
+
+app.post("/newOrder", async (req, res) => {
+    let newOrder = new OrderModel({
+        name: req.body.name,
+        qty: req.body.qty,
+        price: req.body.price,
+        mode: req.body.mode
+    })
+    await newOrder.save();
+    res.json(newOrder);
+})
+
 app.get("/home", async (req, res) => {
-    res.send("This is Home");
+    res.send("server is Listening");
 })
 
 app.listen(PORT, () => {

@@ -3,7 +3,6 @@ import mongoose, { Schema } from "mongoose";
 export const PositionSchema = new Schema({
     product: {
         type: String,
-        required: true
     },
     name: {
         type: String
