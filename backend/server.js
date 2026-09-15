@@ -12,16 +12,30 @@ import userRoutes from "./routes/userRoute.js";
 dotenv.config();
 const PORT = process.env.PORT || 3000;
 const mongodb = process.env.MONGO_URL;
+import cookieParser from "cookie-parser";
 
 mongoose.connect(mongodb);
 
 app.get("/", async (req, res) => {
     res.send("hello world");
-})
+});
 
-app.use(cors());
+app.use(
+    cors({
+        origin: [
+            "http://localhost:5173",
+            "http://localhost:5174"
+        ],
+        credentials: true
+    })
+);
+
 app.use(bodyParser.json());
+app.use(cookieParser());
 app.use(userRoutes);
+
+
+
 // app.get("/addTodatabase", async (req, res) => {
 //     let tempHoldings = [
 //         {

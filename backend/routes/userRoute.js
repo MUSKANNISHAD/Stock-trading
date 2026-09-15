@@ -2,8 +2,9 @@ import express from "express";
 const router = express.Router();
 import User from "../model/UserModel.js";
 import bcrypt from "bcrypt";
-import crypto from "crypto";
-// import { retry } from "@reduxjs/toolkit/query";
+import { authenticateUser } from "../middleware/authMiddleware.js";
+import jwt from "jsonwebtoken";
+
 
 router.post("/register", async (req, res) => {
     try {
@@ -15,6 +16,7 @@ router.post("/register", async (req, res) => {
         if (existUser) {
             return res.status(400).json({ message: "User already exist" });
         }
+
         const hashedpassword = await bcrypt.hash(password, 10);
 
         const newUser = new User({
@@ -22,9 +24,9 @@ router.post("/register", async (req, res) => {
             password: hashedpassword,
             username
         })
-
         await newUser.save();
-        return res.status(200).json({ message: "user registered successfully" });
+
+        return res.status(200).json({ message: "Registration is Successful, please loggedIn", newUser });
     } catch (err) {
         console.error(err);
 
@@ -52,11 +54,26 @@ router.post("/login", async (req, res) => {
         if (!isMatch) {
             return res.status(400).json({ message: "Invalid Credentials" });
         }
-        let token = crypto.randomBytes(32).toString("hex");
-        user.token = token;
-        await user.save();
+        const token = jwt.sign(
+            {
+                userId: user._id
+            },
+            process.env.JWT_SECRET,
+            {
+                expiresIn: "1d"
+            }
+        );
 
-        return res.status(200).json({ message: "user logged in", token })
+        res.cookie("token", token, {
+            httpOnly: true,
+            secure: false,
+            sameSite: "lax",
+            maxAge: 24 * 60 * 60 * 1000
+        });
+
+        return res.status(200).json({
+            message: "user logged in"
+        });
     } catch (err) {
         console.error(err);
 
@@ -65,6 +82,36 @@ router.post("/login", async (req, res) => {
             error: err.message
         });
 
+    }
+});
+
+router.post("/logout", (req, res) => {
+
+    res.clearCookie("token");
+
+    res.status(200).json({
+        message: "Logged out successfully"
+    });
+
+});
+
+router.get("/me", authenticateUser, async (req, res) => {
+    try {
+        const user = await User.findById(req.user.userId)
+            .select("-password");
+
+        if (!user) {
+            return res.status(404).json({
+                message: "User not found"
+            });
+        }
+
+        res.status(200).json({ user });
+
+    } catch (error) {
+        res.status(500).json({
+            message: "Server error"
+        });
     }
 });
 

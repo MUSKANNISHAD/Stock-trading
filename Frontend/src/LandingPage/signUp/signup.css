@@ -1,0 +1,130 @@
+.CardContainer {
+    width: 380px;
+    margin: 70px auto;
+    padding: 35px 40px;
+
+    background-color: #ffffff;
+    border: 1px solid #e6e6e6;
+    border-radius: 6px;
+
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+.CardContainer h2 {
+    margin: 0 0 30px;
+    text-align: center;
+
+    font-size: 28px;
+    font-weight: 500;
+    color: #424242;
+}
+
+.CardContainer form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.CardContainer form > div {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+
+.CardContainer label {
+    font-size: 14px;
+    color: #424242;
+    font-weight: 500;
+}
+
+
+.CardContainer input {
+    width: 100%;
+    box-sizing: border-box;
+
+    padding: 12px 13px;
+
+    font-size: 15px;
+    color: #424242;
+
+    border: 1px solid #d9d9d9;
+    border-radius: 4px;
+
+    outline: none;
+
+    transition: border-color 0.2s ease,
+                box-shadow 0.2s ease;
+}
+
+.CardContainer input::placeholder {
+    color: #999;
+}
+
+.CardContainer input:focus {
+    border-color: #387ed1;
+    box-shadow: 0 0 0 2px rgba(56, 126, 209, 0.12);
+}
+
+.CardContainer button {
+    width: 100%;
+
+    padding: 12px 20px;
+
+    margin-top: 5px;
+
+    border: none;
+    border-radius: 4px;
+
+    background-color: #387ed1;
+    color: white;
+
+    font-size: 15px;
+    font-weight: 500;
+
+    cursor: pointer;
+
+    transition: background-color 0.2s ease,
+                transform 0.1s ease;
+}
+
+.CardContainer button:hover {
+    background-color: #2f6fba;
+}
+
+.CardContainer button:active {
+    transform: translateY(1px);
+}
+
+
+.CardContainer span {
+    text-align: center;
+
+    margin-top: 3px;
+
+    font-size: 14px;
+    color: #666;
+}
+
+.CardContainer span a {
+    color: #387ed1;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.CardContainer span a:hover {
+    text-decoration: underline;
+}
+@media (max-width: 600px) {
+    .CardContainer {
+        width: calc(100% - 40px);
+        box-sizing: border-box;
+
+        margin: 40px auto;
+        padding: 30px 25px;
+    }
+
+    .CardContainer h2 {
+        font-size: 24px;
+    }
+}

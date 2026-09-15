@@ -1,15 +1,30 @@
-import React from "react";
+import React from 'react'
+import Dashboard from './dashboard';
+import Topbar from './Topbar';
+import { useEffect } from "react";
+import { ClientServer } from '../ClientServer';
 
-import Dashboard from "./Dashboard";
-import TopBar from "./TopBar";
+export default function Home() {
 
-const Home = () => {
+  useEffect(() => {
+    const getLoggedInUser = async () => {
+      try {
+        const res = await ClientServer.get("/me");
+
+        console.log("Logged in user:", res.data.user);
+      } catch (error) {
+        if (error.response?.status === 401) {
+          window.location.href = "http://localhost:5173/login";
+        }
+      }
+    };
+
+    getLoggedInUser();
+  }, []);
   return (
-    <>
-      <TopBar />
+    <div>
+      <Topbar />
       <Dashboard />
-    </>
-  );
-};
-
-export default Home;
+    </div>
+  )
+}

@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Summary() {
+export default function Order() {
   return (
     <div>
       hii

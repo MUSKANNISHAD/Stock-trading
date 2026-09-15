@@ -1,7 +1,7 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
 
-const Funds = () => {
+export default function Funds() {
   return (
     <>
       <div className="funds">
@@ -83,6 +83,4 @@ const Funds = () => {
       </div>
     </>
   );
-};
-
-export default Funds;
+}

@@ -33,7 +33,6 @@ export default function Awards() {
             <img src="media/pressLogos.png" alt="Press Logos" className="img-fluid mt-5"></img>
 
           </div>
-
         </div>
       </div>
     </div>

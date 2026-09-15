@@ -19,10 +19,6 @@ export default function homePage() {
                 <Pricing />
                 <Education />
                 <OpenAccount />
-
-
-
-
             </>
         </div>
     )
