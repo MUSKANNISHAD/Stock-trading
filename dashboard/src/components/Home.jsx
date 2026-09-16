@@ -1,6 +1,6 @@
 import React from 'react'
 import Dashboard from './dashboard';
-import Topbar from './Topbar';
+import Topbar from './Topbar.jsx';
 import { useEffect } from "react";
 import { ClientServer } from '../ClientServer';
 

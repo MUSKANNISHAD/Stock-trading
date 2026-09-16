@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import "./BuyActionWindow.css";
-import { GeneralContext } from "./GeneralContext";
+import { GeneralContext } from "./GeneralContext.jsx";
 import { useState } from "react";
 import { ClientServer } from '../ClientServer.js';
 
