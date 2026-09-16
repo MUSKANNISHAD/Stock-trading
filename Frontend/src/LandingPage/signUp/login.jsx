@@ -29,15 +29,15 @@ const Login = () => {
                 },
 
             );
-            console.log("res is", res);
-            console.log("res is", res.data);
+            // console.log("res is", res);
+            // console.log("res is", res.data);
             const { message } = res.data;
             const status = res.status
-            console.log("status is", status);
+            // console.log("status is", status);
             if (status == 200) {
                 handleSuccess(message);
                 setTimeout(() => {
-                    window.location.href = "http://localhost:5174/";
+                    window.location.href = "https://dashboard-theta-one-42.vercel.app/";
                 }, 2000);
             } else {
                 handleError(message);
