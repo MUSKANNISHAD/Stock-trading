@@ -1,6 +1,6 @@
 import React from 'react'
 import Dashboard from './Dashboard.jsx';
-import Topbar from './Topbar.jsx';
+import TopBar from './TopBar.jsx';
 import { useEffect } from "react";
 import { ClientServer } from '../ClientServer';
 
@@ -14,7 +14,7 @@ export default function Home() {
         console.log("Logged in user:", res.data.user);
       } catch (error) {
         if (error.response?.status === 401) {
-          window.location.href = "http://localhost:5173/login";
+          window.location.href = "https://stock-trading-nwil.vercel.app/login";
         }
       }
     };
@@ -23,7 +23,7 @@ export default function Home() {
   }, []);
   return (
     <div>
-      <Topbar />
+      <TopBar />
       <Dashboard />
     </div>
   )

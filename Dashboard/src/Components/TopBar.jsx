@@ -1,7 +1,7 @@
 import React from 'react';
 import Menu from './Menu.jsx';
 
-export default function Topbar() {
+export default function TopBar() {
     return (
         <div className='topbar-container'>
             <div className='indices-container'>
