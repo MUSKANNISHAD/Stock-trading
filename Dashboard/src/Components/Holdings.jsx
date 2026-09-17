@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from "axios";
 import { ClientServer } from '../ClientServer.js';
+import { VerticalGraph } from './VerticalGraph.jsx';
 
 
 export default function Holdings() {
@@ -8,7 +9,7 @@ export default function Holdings() {
 
   useEffect(() => {
     const fetchHoldings = async () => {
-      const response =  ClientServer.get("/allHoldings");
+      const response = ClientServer.get("/allHoldings");
 
       console.log(response.data);
 
@@ -16,6 +17,23 @@ export default function Holdings() {
     }
 
   }, [])
+
+
+  const labels = allHodings.map((subarray) => subarray["name"]);
+
+  const data = {
+    labels,
+    datasets: [
+      {
+        label: "Stock price",
+        data: allHodings.map((stock) => stock.price),
+        backgroundColor: "rgba(255,99,132,0.5)"
+      },
+    ]
+
+  };
+
+
   return (
     <>
       <h3 className='title'>Holdings({allHodings.length})</h3>
@@ -78,6 +96,7 @@ export default function Holdings() {
           <p>P&L</p>
         </div>
       </div>
+      <VerticalGraph data={data} />
     </>
   )
 }
