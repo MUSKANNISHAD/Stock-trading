@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { watchlist } from '../data/data.js';
 import { Tooltip, Grow } from "@mui/material";
 import { BarChartOutlined, Dataset, KeyboardArrowDown, KeyboardArrowUp, MoreHoriz } from "@mui/icons-material";
-import { DoughnoutChart } from './doughnoutChart.jsx';
+import { DoughnoutChart } from './DoughnoutChart.jsx';
 
 
 export const WatchList = () => {
