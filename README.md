@@ -60,11 +60,15 @@ Stock-trading/
 │   └── ...
 │
 ├── backend/
-│   ├── middleware/
-│   ├── model/
-│   ├── routes/
-│   ├── package.json
-│   └── server.js
+│   ├── config/         # Database connection (db.js)
+│   ├── controllers/    # Request handling logic
+│   ├── middleware/     # Auth and centralized error handler
+│   ├── model/          # Mongoose models
+│   ├── routes/         # Route definitions (user, holdings, positions, order)
+│   ├── Schemas/        # Mongoose schemas
+│   ├── app.js          # Express app setup (middleware and routes)
+│   ├── server.js       # Entry point (DB connect and server listen)
+│   └── package.json
 │
 ├── README.md
 └── ...
