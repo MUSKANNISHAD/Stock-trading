@@ -1,9 +1,8 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./BuyActionWindow.css";
 import { GeneralContext } from "./GeneralContext.jsx";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { ClientServer } from '../ClientServer.js';
-
 
 
 export const BuyActionWindow = ({ uid }) => {
@@ -11,18 +10,27 @@ export const BuyActionWindow = ({ uid }) => {
     const [stockQuantity, setStockQuantity] = useState(1);
     const [stockPrice, setStockPrice] = useState(0.0);
 
-    const handleBuyClick = () => {
-        ClientServer.post("/newOrder", {
-            name: uid,
-            qty: stockQuantity,
-            price: stockPrice,
-            mode: "BUY"
-        });
-        GeneralContext.closoBuyWindow();
+    const router = useNavigate();
+
+    const { closeBuyWindow } = useContext(GeneralContext);
+
+    const handleBuyClick = async () => {
+        try {
+            await ClientServer.post("/newOrder", {
+                name: uid,
+                qty: stockQuantity,
+                price: stockPrice,
+                mode: "BUY"
+            });
+            closeBuyWindow();
+            router("/Order");
+        } catch (error) {
+            console.error("Failed to place order:", error);
+        }
     };
 
     const handleCancleClick = () => {
-        GeneralContext.closoBuyWindow();
+        closeBuyWindow();
     }
 
     return (
@@ -36,7 +44,7 @@ export const BuyActionWindow = ({ uid }) => {
                             name="qty"
                             id="qty"
                             value={stockQuantity}
-                            onChange={(e) => setStockQuantity(e.target.value)}
+                            onChange={(e) => setStockQuantity(Number(e.target.value))}
                         />
                     </fieldset>
                     <fieldset>
@@ -47,13 +55,15 @@ export const BuyActionWindow = ({ uid }) => {
                             id="price"
                             step="0.05"
                             value={stockPrice}
-                            onChange={(e) => setStockPrice(e.target.value)}
+                            onChange={(e) => setStockPrice(Number(e.target.value))}
                         />
                     </fieldset>
                 </div>
             </div>
             <div className="buttons">
-                <span>Margin required $140.65</span>
+                <span>
+                    Margin required ₹{(stockQuantity * stockPrice).toFixed(2)}
+                </span>
                 <Link className="btn btn-blue" onClick={handleBuyClick}>Buy</Link>
                 <Link className="btn btn-grey" onClick={handleCancleClick}>Cancel</Link>
             </div>

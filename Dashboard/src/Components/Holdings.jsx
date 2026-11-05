@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import  { useEffect, useState } from 'react';
 import axios from "axios";
 import { ClientServer } from '../ClientServer.js';
 import { VerticalGraph } from './VerticalGraph.jsx';

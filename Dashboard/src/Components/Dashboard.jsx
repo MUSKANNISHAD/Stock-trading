@@ -4,7 +4,7 @@ import Holdings from "./Holdings.jsx";
 import Order from "./Order.jsx";
 import Positions from "./Positions.jsx";
 import Summary from "./Summary.jsx";
-import { WatchList } from "./WatchList.jsx";
+import WatchList from "./WatchList.jsx";
 import { Routes, Route } from "react-router-dom";
 
 import React from 'react';

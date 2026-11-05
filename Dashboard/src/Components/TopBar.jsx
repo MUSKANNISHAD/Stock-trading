@@ -1,22 +1,39 @@
-import React from 'react';
-import Menu from './Menu.jsx';
+import React from "react";
+import Menu from "./Menu.jsx";
+import "./TopBar.css";
 
 export default function TopBar() {
     return (
-        <div className='topbar-container'>
-            <div className='indices-container'>
-                <div className='Nifty'>
-                    <p className='index'>NIFTY 50</p>
-                    <p className='index-points'>{100.2}</p>
-                    <p className='percent'></p>
+        <header className="topbar-container">
+
+            {/* Market Indices */}
+            <div className="indices-container">
+
+                <div className="index-card">
+                    <div className="index-info">
+                        <span className="index">NIFTY 50</span>
+                        <span className="index-points">100.2</span>
+                    </div>
+                    <span className="index-change positive">
+                        +0.25%
+                    </span>
                 </div>
-                <div className='sensex'>
-                    <p className='index'>SENSEX </p>
-                    <p className='index-points'>{100.2} </p>
-                    <p className='percent'> </p>
+
+                <div className="index-card">
+                    <div className="index-info">
+                        <span className="index">SENSEX</span>
+                        <span className="index-points">100.2</span>
+                    </div>
+                    <span className="index-change positive">
+                        +0.18%
+                    </span>
                 </div>
+
             </div>
+
+            {/* Navigation */}
             <Menu />
-        </div>
-    )
+
+        </header>
+    );
 }

@@ -1,83 +1,109 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom';
+import React, { useState } from "react";
+import { NavLink, Link } from "react-router-dom";
+import "./Menu.css";
+
+const navigationLinks = [
+    { label: "Dashboard", path: "/" },
+    { label: "Orders", path: "/Order" },
+    { label: "Holdings", path: "/Holdings" },
+    { label: "Positions", path: "/Positions" },
+    { label: "Funds", path: "/funds" },
+    { label: "Apps", path: "/App" },
+];
 
 export default function Menu() {
+    const [isProfileDropDown, setIsProfileDropDown] = useState(false);
 
-  const [selectedMenu, setSelectedMenu] = useState(0);
-  const [isProfileDropDown, setIsProfileDropDown] = useState(0);
+    return (
+        <div className="menu-container">
 
-  const handleClickMenu = (index) => {
-    setSelectedMenu(index);
-  }
+            {/* Logo */}
+            <Link to="/" className="brand-logo">
+                <img src="/logo.png" alt="Stock Trading Logo" />
+            </Link>
 
-  const handleProfileDropDown = (index) => {
-    setIsProfileDropDown(!isProfileDropDown);
-  }
+            {/* Navigation */}
+            <div className="menus">
 
-  const menuClass = "menu";
-  const activeMenuClass = "menu selected";
+                <nav className="navigation">
+                    {navigationLinks.map((item) => (
+                        <NavLink
+                            key={item.path}
+                            to={item.path}
+                            end={item.path === "/"}
+                            className={({ isActive }) =>
+                                isActive ? "menu selected" : "menu"
+                            }
+                        >
+                            {item.label}
+                        </NavLink>
+                    ))}
+                </nav>
 
-  return (
-    <div className='menu-container'>
-      <img src="logo.png" style={{ width: "50px" }} />
-      <div className='menus'>
-        <ul>
-          <li>
-            <Link style={{ textDecoration: "none" }}
-              to="/"
-              onClick={() => handleClickMenu(0)}
-            >
-              <p className={selectedMenu === 0 ? activeMenuClass : menuClass}>Dashboards</p>
-            </Link>
-          </li>
-          <li>
-            <Link style={{ textDecoration: "none" }}
-              to="/Order"
-              onClick={() => handleClickMenu(1)}
-            >
-              <p className={selectedMenu === 1 ? activeMenuClass : menuClass}>Orders</p>
-            </Link>
-          </li>
-          <li>
-            <Link style={{ textDecoration: "none" }}
-              to="/Holdings"
-              onClick={() => handleClickMenu(2)}
-            >
-              <p className={selectedMenu === 2 ? activeMenuClass : menuClass}>Holdings</p>
-            </Link>
-          </li>
-          <li>
-            <Link style={{ textDecoration: "none" }}
-              to="/Positions"
-              onClick={() => handleClickMenu(3)}
-            >
-              <p className={selectedMenu === 3 ? activeMenuClass : menuClass}>Positions</p>
-            </Link>
-          </li>
-          <li>
-            <Link style={{ textDecoration: "none" }}
-              to="/funds"
-              onClick={() => handleClickMenu(4)}
-            >
-              <p className={selectedMenu === 4 ? activeMenuClass : menuClass}>Funds</p>
-            </Link>
-          </li>
-          <li>
-            <Link style={{ textDecoration: "none" }}
-              to="/App"
-              onClick={() => handleClickMenu(5)}
-            >
-              <p className={selectedMenu === 5 ? activeMenuClass : menuClass}>Apps</p>
-            </Link>
-          </li>
-        </ul>
-        <hr />
-        <div className='profile' onClick={handleProfileDropDown}>
-          <div className='avatar'>ZU</div>
-          <p className='username'>USERID</p>
+                {/* User Profile */}
+                <div className="profile-wrapper">
+
+                    <button
+                        className="profile"
+                        onClick={() =>
+                            setIsProfileDropDown(!isProfileDropDown)
+                        }
+                    >
+                        <div className="avatar">ZU</div>
+
+                        <span className="username">USERID</span>
+
+                        <span className="profile-arrow">
+                            {isProfileDropDown ? "▲" : "▼"}
+                        </span>
+                    </button>
+
+                    {isProfileDropDown && (
+                        <div className="profile-dropdown">
+
+                            <div className="dropdown-user">
+                                <div className="avatar">ZU</div>
+
+                                <div>
+                                    <p className="dropdown-name">
+                                        User Name
+                                    </p>
+
+                                    <p className="dropdown-email">
+                                        user@example.com
+                                    </p>
+                                </div>
+                            </div>
+
+                            <hr />
+
+                            <Link
+                                to="/"
+                                onClick={() => setIsProfileDropDown(false)}
+                            >
+                                Dashboard
+                            </Link>
+
+                            <Link
+                                to="/funds"
+                                onClick={() => setIsProfileDropDown(false)}
+                            >
+                                Manage Funds
+                            </Link>
+
+                            <Link
+                                to="/logout"
+                                onClick={() => setIsProfileDropDown(false)}
+                            >
+                                Logout
+                            </Link>
+
+                        </div>
+                    )}
+
+                </div>
+
+            </div>
         </div>
-      </div>
-
-    </div>
-  )
+    );
 }
