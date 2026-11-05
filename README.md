@@ -225,7 +225,7 @@ This project is intended for educational purposes and stock trading simulation. 
 
 ## 📄 License
 
-The project's license will be published after approval by the project maintainer. Refer to the repository's `LICENSE` file once available.
+This project is licensed under the [MIT License](LICENSE).
 
 ---
 
