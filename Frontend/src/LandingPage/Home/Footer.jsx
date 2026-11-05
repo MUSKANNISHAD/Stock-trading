@@ -1,7 +1,17 @@
 import React from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import "./Footer.css";
 
 export default function Footer() {
+  const location = useLocation();
+  const handleSamePageClick = (path) => {
+    if (location.pathname === path) {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    }
+  };
   return (
     <div className="container border-top mb-5 mt-8 pt-5">
       <div className="row">
@@ -12,29 +22,29 @@ export default function Footer() {
         </div>
         <div className="col">
           <h5>Company</h5>
-          <a href="#" style={{ textDecoration: "none" }}>About</a><br></br>
-          <a href="#" style={{ textDecoration: "none" }}>Products</a><br></br>
-          <a href="#" style={{ textDecoration: "none" }}>Pricing</a><br></br>
-          <a href="#" style={{ textDecoration: "none" }}>Refferal Programme</a><br></br>
-          <a href="#" style={{ textDecoration: "none" }}>Carrers</a><br></br>
-          <a href="#" style={{ textDecoration: "none" }}>Zerodha.tech</a><br></br>
-          <a href="#" style={{ textDecoration: "none" }}>Press & media</a><br></br>
-          <a href="#" style={{ textDecoration: "none" }}>Zerodha care(CSR)</a> <br></br>
+          <Link to="/about" onClick={() => handleSamePageClick("/about")} style={{ textDecoration: "none" }}>About</Link><br></br>
+          <Link to="/products/" onClick={() => handleSamePageClick("/products/")} style={{ textDecoration: "none" }}>Products</Link><br></br>
+          <Link to="/pricing" onClick={() => handleSamePageClick("/pricing")}style={{ textDecoration: "none" }}>Pricing</Link><br></br>
+          <Link to="#" onClick={() => handleSamePageClick("#")} style={{ textDecoration: "none" }}>Refferal Programme</Link><br></br>
+          <Link to="#" onClick={() => handleSamePageClick("#")} style={{ textDecoration: "none" }}>Carrers</Link><br></br>
+          <Link to="#" onClick={() => handleSamePageClick("#")} style={{ textDecoration: "none" }}>Zerodha.tech</Link><br></br>
+          <Link to="#" onClick={() => handleSamePageClick("#")} style={{ textDecoration: "none" }}>Press & media</Link><br></br>
+          <Link to="#" onClick={() => handleSamePageClick("#")} style={{ textDecoration: "none" }}>Zerodha care(CSR)</Link> <br></br>
 
         </div>
         <div className="col">
           <h5>Support</h5>
-          <a href="#" style={{ textDecoration: "none" }}> Contact</a><br></br>
-          <a href="#" style={{ textDecoration: "none" }}>Support Portal</a><br></br>
-          <a href="#" style={{ textDecoration: "none" }}>Z-Connect blog</a><br></br>
-          <a href="#" style={{ textDecoration: "none" }}>List of Charges</a><br></br>
-          <a href="#" style={{ textDecoration: "none" }} >Downloads & Resources</a>
+          <Link to="#" onClick={() => handleSamePageClick("#")} style={{ textDecoration: "none" }}> Contact</Link><br></br>
+          <Link to="/support" onClick={() => handleSamePageClick("/support")} style={{ textDecoration: "none" }}>Support Portal</Link><br></br>
+          <Link to="#" onClick={() => handleSamePageClick("#")} style={{ textDecoration: "none" }}>Z-Connect blog</Link><br></br>
+          <Link to="#" onClick={() => handleSamePageClick("#")} style={{ textDecoration: "none" }}>List of Charges</Link><br></br>
+          <Link to="#" onClick={() => handleSamePageClick("#")} style={{ textDecoration: "none" }}>Downloads & Resources</Link>
         </div>
         <div className="col">
           <h5>Account</h5>
-          <a style={{ textDecoration: "none" }} href="#">Open an Account</a><br></br>
-          <a style={{ textDecoration: "none" }} href="#"> Fund Transfer</a><br></br>
-          <a style={{ textDecoration: "none" }} href="#"> 60 day challange</a>
+          <Link style={{ textDecoration: "none" }} to="#" onClick={() => handleSamePageClick("#")}>Open an Account</Link><br></br>
+          <Link style={{ textDecoration: "none" }} to="#" onClick={() => handleSamePageClick("#")}> Fund Transfer</Link><br></br>
+          <Link style={{ textDecoration: "none" }} to="#" onClick={() => handleSamePageClick("#")}> 60 day challange</Link>
 
         </div>
 
