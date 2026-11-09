@@ -25,27 +25,26 @@ export default function Footer() {
           <Link to="/about" onClick={() => handleSamePageClick("/about")} style={{ textDecoration: "none" }}>About</Link><br></br>
           <Link to="/products/" onClick={() => handleSamePageClick("/products/")} style={{ textDecoration: "none" }}>Products</Link><br></br>
           <Link to="/pricing" onClick={() => handleSamePageClick("/pricing")}style={{ textDecoration: "none" }}>Pricing</Link><br></br>
-          <Link to="#" onClick={() => handleSamePageClick("#")} style={{ textDecoration: "none" }}>Refferal Programme</Link><br></br>
-          <Link to="#" onClick={() => handleSamePageClick("#")} style={{ textDecoration: "none" }}>Carrers</Link><br></br>
-          <Link to="#" onClick={() => handleSamePageClick("#")} style={{ textDecoration: "none" }}>Zerodha.tech</Link><br></br>
-          <Link to="#" onClick={() => handleSamePageClick("#")} style={{ textDecoration: "none" }}>Press & media</Link><br></br>
-          <Link to="#" onClick={() => handleSamePageClick("#")} style={{ textDecoration: "none" }}>Zerodha care(CSR)</Link> <br></br>
+          <span>Refferal Programme</span><br></br>
+          <span>Carrers</span><br></br>
+          <span>Zerodha.tech</span><br></br>
+          <span>Press & media</span><br></br>
+          <span>Zerodha care(CSR)</span> <br></br>
 
         </div>
         <div className="col">
           <h5>Support</h5>
-          <Link to="#" onClick={() => handleSamePageClick("#")} style={{ textDecoration: "none" }}> Contact</Link><br></br>
+          <span> Contact</span><br></br>
           <Link to="/support" onClick={() => handleSamePageClick("/support")} style={{ textDecoration: "none" }}>Support Portal</Link><br></br>
-          <Link to="#" onClick={() => handleSamePageClick("#")} style={{ textDecoration: "none" }}>Z-Connect blog</Link><br></br>
-          <Link to="#" onClick={() => handleSamePageClick("#")} style={{ textDecoration: "none" }}>List of Charges</Link><br></br>
-          <Link to="#" onClick={() => handleSamePageClick("#")} style={{ textDecoration: "none" }}>Downloads & Resources</Link>
+          <span>Z-Connect blog</span><br></br>
+          <span>List of Charges</span><br></br>
+          <span>Downloads & Resources</span>
         </div>
         <div className="col">
           <h5>Account</h5>
-          <Link style={{ textDecoration: "none" }} to="#" onClick={() => handleSamePageClick("#")}>Open an Account</Link><br></br>
-          <Link style={{ textDecoration: "none" }} to="#" onClick={() => handleSamePageClick("#")}> Fund Transfer</Link><br></br>
-          <Link style={{ textDecoration: "none" }} to="#" onClick={() => handleSamePageClick("#")}> 60 day challange</Link>
-
+          <Link style={{ textDecoration: "none" }} to="/signup" onClick={() => handleSamePageClick("/signup")}>Open an Account</Link><br></br>
+          <span> Fund Transfer</span><br></br>
+          <span> 60 day challange</span>
         </div>
 
       </div>
