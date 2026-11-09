@@ -4,7 +4,9 @@
 export const errorHandler = (err, req, res, next) => {
     console.error(err);
     const status = err.status || 500;
+    const isServerError = status >= 500;
     res.status(status).json({
-        message: status === 500 ? "Internal server error" : err.message
+        message: isServerError ? "Internal server error" : err.message,
+        error: isServerError ? "INTERNAL_SERVER_ERROR" : "REQUEST_ERROR"
     });
 };
