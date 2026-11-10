@@ -60,11 +60,15 @@ Stock-trading/
 │   └── ...
 │
 ├── backend/
-│   ├── middleware/
-│   ├── model/
-│   ├── routes/
-│   ├── package.json
-│   └── server.js
+│   ├── config/         # Database connection (db.js)
+│   ├── controllers/    # Request handling logic
+│   ├── middleware/     # Auth and centralized error handler
+│   ├── model/          # Mongoose models
+│   ├── routes/         # Route definitions (user, holdings, positions, order)
+│   ├── Schemas/        # Mongoose schemas
+│   ├── app.js          # Express app setup (middleware and routes)
+│   ├── server.js       # Entry point (DB connect and server listen)
+│   └── package.json
 │
 ├── README.md
 └── ...
@@ -221,7 +225,7 @@ This project is intended for educational purposes and stock trading simulation. 
 
 ## 📄 License
 
-The project's license will be published after approval by the project maintainer. Refer to the repository's `LICENSE` file once available.
+This project is licensed under the [MIT License](LICENSE).
 
 ---
 
