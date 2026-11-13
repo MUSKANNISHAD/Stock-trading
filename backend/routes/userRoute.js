@@ -100,6 +100,14 @@ router.post("/login", async (req, res) => {
 
         const trimmedEmail = typeof email === "string" ? email.trim() : "";
 
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(trimmedEmail)) {
+            return res.status(400).json({
+                message: "Please provide a valid email address",
+                error: "REQUEST_ERROR"
+            });
+        }
+
         // Query using case-insensitive regex so legacy accounts saved with mixed-case emails can log in
         const user = await User.findOne({
             email: { $regex: new RegExp(`^${escapeRegex(trimmedEmail)}$`, "i") }
