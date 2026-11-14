@@ -1,4 +1,4 @@
-import { useEffect, useState, useMemo } from 'react';
+import { useEffect, useState, useCallback, useMemo } from 'react';
 import { ClientServer } from '../ClientServer.js';
 import { VerticalGraph } from './VerticalGraph.jsx';
 
@@ -7,7 +7,7 @@ export default function Holdings() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const fetchHoldings = async () => {
+  const fetchHoldings = useCallback(async () => {
     setIsLoading(true);
     setError(null);
     try {
@@ -23,34 +23,12 @@ export default function Holdings() {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, []);
 
   useEffect(() => {
-    let isMounted = true;
-
-    ClientServer.get("/allHoldings")
-      .then((response) => {
-        if (isMounted) {
-          setAllHoldings(response.data || []);
-          setIsLoading(false);
-        }
-      })
-      .catch((err) => {
-        if (isMounted) {
-          console.error("Failed to fetch holdings:", err);
-          setError(
-            err?.response?.data?.message ||
-            err?.message ||
-            "Failed to load holdings. Please try again."
-          );
-          setIsLoading(false);
-        }
-      });
-
-    return () => {
-      isMounted = false;
-    };
-  }, []);
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    fetchHoldings();
+  }, [fetchHoldings]);
 
   // Dynamic portfolio calculations
   const { totalInvestment, currentValue, totalPL, plPercentage, isProfit } = useMemo(() => {
